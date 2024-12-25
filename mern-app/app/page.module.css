@@ -9,13 +9,17 @@
 .todocard {
   width: 50vw;
   height: 100vh;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 .todoForm {
   width: 50vw;
   height: 100vh;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: start;

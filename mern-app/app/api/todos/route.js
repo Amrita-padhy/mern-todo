@@ -40,3 +40,37 @@ export async function POST(request) {
     );
   }
 }
+
+export async function DELETE(request) {
+  await connectToDatabase();
+  try {
+    const { id } = await request.json();
+    const todo = await Todo.findByIdAndDelete(id);
+    return new Response(JSON.stringify(todo), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ message: "Error deleting todo", error }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+}
+
+export async function PUT(request) {
+  await connectToDatabase();
+  try {
+    const body = await request.json();
+    const todo = await Todo.findByIdAndUpdate(body.id, body, { new: true });
+    return new Response(JSON.stringify(todo), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ message: "Error updating todo", error }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+}
